@@ -14,7 +14,7 @@ variable (F : Type u) [Field F] [NumberField F] -- totally real number field wit
 
 variable (R) [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F] -- 𝒪_F
 
-variable {𝒪L} [CommRing 𝒪L] [LocalRing 𝒪L]
+variable {𝒪L} [CommRing 𝒪L] [IsLocalRing 𝒪L]
 
 instance {n R} [DecidableEq n] [Fintype n] [TopologicalSpace R] [CommRing R] [TopologicalRing R] :
   TopologicalSpace (GL n R) := by delta Matrix.GeneralLinearGroup; infer_instance
@@ -22,9 +22,9 @@ instance {n R} [DecidableEq n] [Fintype n] [TopologicalSpace R] [CommRing R] [To
 instance {n R} [DecidableEq n] [Fintype n] [TopologicalSpace R] [CommRing R] [TopologicalRing R] :
   TopologicalGroup (GL n R) := by delta Matrix.GeneralLinearGroup; infer_instance
 
-def LocalRing.withIdeal {R} [CommRing R] [LocalRing R] : WithIdeal R := ⟨maximalIdeal R⟩
+def IsLocalRing.withIdeal {R} [CommRing R] [IsLocalRing R] : WithIdeal R := ⟨maximalIdeal R⟩
 
-attribute [local instance] LocalRing.withIdeal
+attribute [local instance] IsLocalRing.withIdeal
 
 variable (r : ContinuousMonoidHom (Field.absoluteGaloisGroup F) (GL (Fin 2) 𝒪L)) -- regular algebraic ℓ-adic rep
 
