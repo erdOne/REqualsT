@@ -2,7 +2,7 @@ import Mathlib.Algebra.Ring.Ext
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.FiniteType
 import Mathlib.Topology.Algebra.Module.Basic
-import REqualsT.Patching.TopologicallyFG
+import REqualsT.Utils.TopologicallyFG
 
 @[to_additive]
 instance {α : Type*} [Finite α] : Finite (Monoid α) :=

@@ -1,4 +1,4 @@
-import REqualsT.Patching.Lemmas
+import REqualsT.Utils.Lemmas
 
 variable {ι : Type*} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≥ ·)]
 variable (α : ι → Type*) (f : ∀ i j, i ≤ j → α i → α j)

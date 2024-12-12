@@ -1,5 +1,5 @@
-import REqualsT.Patching.Lemmas
-import REqualsT.Patching.StructureFiniteness
+import REqualsT.Utils.Lemmas
+import REqualsT.Utils.StructureFiniteness
 
 set_option autoImplicit false
 variable (R₀ : Type*) [CommRing R₀]

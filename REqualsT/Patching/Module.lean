@@ -1,5 +1,6 @@
-import REqualsT.Patching.AdicTopology
+import REqualsT.Utils.AdicTopology
 import REqualsT.Patching.Ultraproduct
+import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 
 local notation "Ann" => Module.annihilator
 

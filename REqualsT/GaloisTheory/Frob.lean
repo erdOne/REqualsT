@@ -22,7 +22,7 @@ instance {n R} [DecidableEq n] [Fintype n] [TopologicalSpace R] [CommRing R] [To
 instance {n R} [DecidableEq n] [Fintype n] [TopologicalSpace R] [CommRing R] [TopologicalRing R] :
   TopologicalGroup (GL n R) := by delta Matrix.GeneralLinearGroup; infer_instance
 
-def IsLocalRing.withIdeal {R} [CommRing R] [IsLocalRing R] : WithIdeal R := ⟨maximalIdeal R⟩
+abbrev IsLocalRing.withIdeal {R} [CommRing R] [IsLocalRing R] : WithIdeal R := ⟨maximalIdeal R⟩
 
 attribute [local instance] IsLocalRing.withIdeal
 

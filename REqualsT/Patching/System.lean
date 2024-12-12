@@ -1,7 +1,7 @@
 import REqualsT.Patching.Algebra
 import REqualsT.Patching.Over
 import REqualsT.Patching.Module
-import REqualsT.Patching.Depth
+import REqualsT.Utils.Depth
 
 variable (Λ : Type*) [CommRing Λ]
 variable {ι : Type*} (R : ι → Type*)

@@ -1,4 +1,4 @@
-import REqualsT.Patching.AdicTopology
+import REqualsT.Utils.AdicTopology
 import REqualsT.Patching.Ultraproduct
 
 variable (Λ : Type*) {ι : Type*} [CommRing Λ] (R : ι → Type*)

@@ -1,15 +1,9 @@
-import Mathlib.LinearAlgebra.TensorProduct.Quotient
 import Mathlib.RingTheory.AdicCompletion.Basic
-import Mathlib.RingTheory.Artinian
-import Mathlib.RingTheory.Filtration
-import Mathlib.RingTheory.Finiteness.TensorProduct
-import Mathlib.RingTheory.Ideal.Quotient.Noetherian
-import Mathlib.RingTheory.LocalRing.ResidueField.Defs
-import Mathlib.RingTheory.LocalRing.RingHom.Basic
 import Mathlib.Topology.Algebra.Algebra
-import Mathlib--.Topology.Algebra.Nonarchimedean.AdicTopology
-import REqualsT.Patching.InverseLimit
-import REqualsT.Patching.Lemmas
+import Mathlib.Topology.Algebra.ClosedSubgroup
+import Mathlib.Topology.Algebra.Nonarchimedean.AdicTopology
+import Mathlib.Topology.Connected.Separation
+import REqualsT.Utils.InverseLimit
 
 variable (R) [CommRing R] [IsLocalRing R] [TopologicalSpace R] [TopologicalRing R]
 
@@ -209,5 +203,23 @@ instance (priority := 100) [IsNoetherianRing R]
   have : Finite (R ⧸ I) := AddSubgroup.quotient_finite_of_isOpen _ hI
   obtain ⟨n, hn⟩ := exists_maximalIdeal_pow_le_of_finite_quotient I
   exact ⟨n, subset_trans hn hIs⟩
+
+lemma Continuous.of_isLocalHom {R S : Type*} [CommRing R] [IsLocalRing R] [TopologicalSpace R] [TopologicalRing R]
+    [IsAdicTopology R] [CommRing S] [IsLocalRing S] [TopologicalSpace S]
+    [TopologicalRing S] [IsAdicTopology S] (f : R →+* S) [IsLocalHom f] : Continuous f := by
+  apply continuous_of_continuousAt_zero
+  unfold ContinuousAt
+  rw [map_zero]
+  apply ((hasBasis_maximalIdeal_pow R).tendsto_iff (hasBasis_maximalIdeal_pow S)).mpr ?_
+  simp only [SetLike.mem_coe, true_and, forall_const, ← SetLike.le_def, ← Ideal.mem_comap,
+    ← Ideal.map_le_iff_le_comap, Ideal.map_pow]
+  intro n
+  exact ⟨n, Ideal.pow_right_mono (((local_hom_TFAE f).out 0 2).mp ‹_›) _⟩
+
+abbrev withIdeal {R} [CommRing R] [IsLocalRing R] : WithIdeal R := ⟨maximalIdeal R⟩
+
+attribute [local instance] withIdeal
+
+instance {R} [CommRing R] [IsLocalRing R] : IsAdicTopology R := ⟨rfl⟩
 
 end IsLocalRing
